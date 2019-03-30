@@ -1,8 +1,8 @@
 let multichain = require("multichain-node")({
-    port: 9266,
+    port: 4392,
     host: '127.0.0.1',
     user: "multichainrpc",
-    pass: "77GfAr5ZpVGb33xKQR6QB8x8PyWDV3xzyZh29rUjp3AA"        
+    pass: "6omkfMjC7wMdzHzyrSa2gsxJdNinTrTibZGAvKpP9iaD"        
 });
 
 
@@ -25,7 +25,7 @@ function addData(params) {
             hex += ''+value.charCodeAt(i).toString(16);
         }
         console.log("hex",hex);
-        multichain.publish({ stream: "Result", key: key, data: hex }, (err, res) => {
+        multichain.publish({ stream: "result", key: key, data: hex }, (err, res) => {
            console.log("response----->",res)
             if (err == null) {
 

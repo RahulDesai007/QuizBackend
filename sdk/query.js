@@ -1,8 +1,8 @@
 let multichain = require("multichain-node")({
-    port: 9266,
+    port: 4392,
     host: '127.0.0.1',
     user: "multichainrpc",
-    pass: "77GfAr5ZpVGb33xKQR6QB8x8PyWDV3xzyZh29rUjp3AA"        
+    pass: "6omkfMjC7wMdzHzyrSa2gsxJdNinTrTibZGAvKpP9iaD"     
 });
 
 
@@ -10,10 +10,10 @@ function readAllRequest(params) {
     
     return new Promise((resolve) => {
         var scoreDetails = [];
-        var key = params.key
-        console.log("key------>",'"'+key+'"')
+       // var key = params.key
+       // console.log("key------>",'"'+key+'"')
         var response;    
-    multichain.listStreamItems({stream: "Result"}, (err, res) => {
+    multichain.listStreamItems({stream: "result"}, (err, res) => {
         console.log("res----->",res)
         if(err == null){
 
@@ -24,10 +24,10 @@ function readAllRequest(params) {
                    string += String.fromCharCode(parseInt(data.substr(j, 2), 16))
                     }
                   
-                
+                console.log("res----->",res)
                 scoreDetails.push({
                                             "publishers": res[i].publishers[0],
-                                            "RollNo": res[i].key,
+                                            "RollNo": res[i].keys,
                                             "Score": string,
                                             "confirmations": res[i].confirmations,
                                             "blocktime": res[i].blocktime,
@@ -36,7 +36,7 @@ function readAllRequest(params) {
                                         });
                 }   
 
-        console.log("scoreDetails",scoreDetails);
+        console.log("scoreDetails------->>",scoreDetails);
 
          return resolve({response:scoreDetails});
         }else{
@@ -54,7 +54,7 @@ function readRequest(params) {
         var requestid = params.requestid;   
         var policyDetails = [];
         var response;    
-    multichain.listStreamKeyItems({stream: "Result","key": key}, (err, res) => {
+    multichain.listStreamKeyItems({stream: "result","key": key}, (err, res) => {
         console.log(res)
         if(err == null){
 

@@ -30,6 +30,8 @@ module.exports = router => {
     router.post('/UploadScore', (req, res) => {
         const rollNo = req.body.rollNo;
         const score = req.body.score;
+        const name = req.body.name;
+        const mobNo= req.body.mobNo;
        console.log(rollNo,"rollNo")
       // logger.debug("Some debug messages");
       
@@ -44,7 +46,7 @@ module.exports = router => {
     
     }else{
             //route to AddScore.js
-            AddScore.AddScore(rollNo,score)
+            AddScore.AddScore(rollNo,score,name,mobNo)
     
         .then(result => {
            
@@ -98,17 +100,21 @@ module.exports = router => {
             readAllRequest
                 .readAllRequest()
                 .then(function(result) {
-                    console.log("  result.query---->", result.query);
-                    return res.json({
+                    console.log("  result.query---->", result.query.response.length);
+                  
+                    
+                     res.json({
+                        
                         "status": 200,
                         "readAllRequest": result.query
                     });
                 })
+            
                 .catch(err => res.status(err.status).json({
                     message: err.message
                 }));
         
-           
+            
         }
     )
 

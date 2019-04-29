@@ -4,12 +4,13 @@ let multichain = require("multichain-node")({
     user: "multichainrpc",
     pass: "6omkfMjC7wMdzHzyrSa2gsxJdNinTrTibZGAvKpP9iaD"     
 });
-
+var marks
 
 function readAllRequest(params) {
     
     return new Promise((resolve) => {
         var scoreDetails = [];
+        var scoreDetail = [];
        // var key = params.key
        // console.log("key------>",'"'+key+'"')
         var response;    
@@ -34,11 +35,34 @@ function readAllRequest(params) {
                                             "txid": res[i].txid,
                                             
                                         });
-                }   
+                
 
-        console.log("scoreDetails------->>",scoreDetails);
+    //     console.log("scoreDetails------->>",scoreDetails);
+    //     for (i=0; i<= scoreDetails.length; i++){
+    //         console.log(i)
+    //         marks = scoreDetails[i].Score
+    //         console.log("marks--->", marks)
+        
+    //     if (marks <= 1) {
+    //         status = "Fail"
+    //     } else {
+    //         status = "Pass"
+    //     }
+    // }
 
-         return resolve({response:scoreDetails});
+    scoreDetail.push({
+        "publishers": res[i].publishers[0],
+        "RollNo": res[i].keys,
+        "Score": string,
+       // "Status": status,
+        "confirmations": res[i].confirmations,
+        "blocktime": res[i].blocktime,
+        "txid": res[i].txid,
+        
+    });
+
+}
+         return resolve({response:scoreDetail});
         }else{
             console.log(err)
         }
@@ -55,7 +79,7 @@ function readRequest(params) {
         var policyDetails = [];
         var response;    
     multichain.listStreamKeyItems({stream: "result","key": key}, (err, res) => {
-        console.log(res)
+        console.log("res--->",res)
         if(err == null){
 
             

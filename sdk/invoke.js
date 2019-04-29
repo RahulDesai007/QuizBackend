@@ -18,14 +18,18 @@ function addData(params) {
         var response;
         var key = params.result.rollNo;
         var value1 = params.result.score;
+        var status = params.result.status
+        var valuer = status.toString();
         var value = value1.toString();
         console.log("value--->",value)
         var hex = '';
+        var hexr = '';
         for(var i=0;i<value.length;i++) {
             hex += ''+value.charCodeAt(i).toString(16);
-        }
+            }
+        console.log("status",status)
         console.log("hex",hex);
-        multichain.publish({ stream: "result", key: key, data: hex }, (err, res) => {
+        multichain.publish({ stream: "result", key: key, data: hex, status: status }, (err, res) => {
            console.log("response----->",res)
             if (err == null) {
 

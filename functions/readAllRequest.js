@@ -15,7 +15,7 @@ exports.readAllRequest = (key) => {
        })
 
        .then((response) => {
-            console.log("data in response " + JSON.stringify(response.key))
+            console.log("data in response " + JSON.stringify(response))
 
            return resolve({
                 status: 200,

@@ -62,6 +62,8 @@ module.exports = router => {
     });  
     //To fetch questions
     router.get('/fetchQuestions', cors(), (req, res) => {
+        res.header("Access-Control-Allow-Origin", "*");
+   // res.header("Access-Control-Allow-Headers", "Orig
         const userid = "001"
         console.log(userid);
 
